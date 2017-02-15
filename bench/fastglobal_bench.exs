@@ -21,12 +21,12 @@ defmodule FastGlobalBench do
     :ok
   end
 
-  bench "process", [agent: gen_agent()] do
+  bench "agent get", [agent: gen_agent()] do
     Agent.get(agent, &(&1))
     :ok
   end
 
-  bench "ets", [ets: gen_ets()] do
+  bench "ets get", [ets: gen_ets()] do
     :ets.lookup(ets, :data)
     :ok
   end
@@ -34,18 +34,18 @@ defmodule FastGlobalBench do
   ## Private
 
   defp gen_fastglobal() do
-    FastGlobal.put(:data, gen_services(10))
+    FastGlobal.put(:data, gen_services(50))
     :data
   end
 
   defp gen_agent() do
-    {:ok, agent} = Agent.start_link(fn -> gen_services(10) end)
+    {:ok, agent} = Agent.start_link(fn -> gen_services(50) end)
     agent
   end
 
   defp gen_ets() do
     tab = :ets.new(:data, [:public, {:read_concurrency, true}])
-    :ets.insert(tab, {:data, gen_services(10)})
+    :ets.insert(tab, {:data, gen_services(50)})
     tab
   end
 
@@ -63,10 +63,10 @@ defmodule FastGlobalBench do
       address: "fast-global-prd-1-#{i}",
       id: "fast-global-prd-1-#{i}:#{port}",
       metadata: %{
-        "otp" => "discord_guilds@discord-guilds-prd-1-#{i}",
+        "otp" => "fastglobal@fastglobal-prd-1-#{i}",
         "capacity" => "low"
       },
-      name: "discord_guilds",
+      name: "fastglobal",
       port: port
     }
   end
