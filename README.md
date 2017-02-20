@@ -4,8 +4,9 @@
 [![Hex.pm Version](http://img.shields.io/hexpm/v/fastglobal.svg?style=flat)](https://hex.pm/packages/fastglobal)
 
 The Erlang VM is great at many things, but quick access to large shared data is not one of them. Storing data in a single process
-results in contention, using an ETS table gets more expensive to read as the data gets larger and both require copying data to the calling process.
-If you have large infrequently changing data that needs to be accessed by thousands of process there is a better way.
+results in overloading the process, using an ETS table gets more expensive to read as the data gets larger, and both require copying
+data to the calling process. If you have large infrequently changing data that needs to be accessed by thousands of process there
+is a better way.
 
 Erlang has an optimization called constant pools for functions that return static data, you can also compile modules at runtime.
 This method was originally popularized by [mochiglobal](https://github.com/mochi/mochiweb/blob/master/src/mochiglobal.erl). This
