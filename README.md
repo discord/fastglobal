@@ -12,6 +12,7 @@ This method was originally popularized by [mochiglobal](https://github.com/mochi
 module is an Elixir version with some optimizations such as generating the atom keys and reusing them.
 
 ## Performance
+
 ```
 benchmark name        iterations   average time
 fastglobal get          10000000   0.35 µs/op
@@ -25,8 +26,8 @@ fastglobal put (100)          50   58144.80 µs/op
 ## Caveats
 
 - Compile times get slower as data size increases.
-- Getting a key that does not exist is expensive due to try/catch, put atleast a `nil` value.
-- Creating atoms from strings is not cheap, try use `FastGlobal.new`.
+- Getting a key that does not exist is expensive due to try/catch, put at least a `nil` value.
+- Creating atoms from strings is not cheap, use `FastGlobal.new`.
 
 ## Usage
 
@@ -49,3 +50,8 @@ data = %{
 FastGlobal.put(:data, data)
 data == FastGlobal.get(:data)
 ```
+
+## License
+
+FastGlobal is released under [the MIT License](LICENSE).
+Check [LICENSE](LICENSE) file for more information.
