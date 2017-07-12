@@ -44,7 +44,7 @@ defmodule FastGlobal do
   ## Private
 
   @spec do_get(atom, any) :: any
-  def do_get(module, default) do
+  defp do_get(module, default) do
     try do
       module.value
     catch
