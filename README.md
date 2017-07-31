@@ -5,7 +5,7 @@
 
 The Erlang VM is great at many things, but quick access to large shared data is not one of them. Storing data in a single process
 results in overloading the process, using an ETS table gets more expensive to read as the data gets larger, and both require copying
-data to the calling process. If you have large infrequently changing data that needs to be accessed by thousands of process there
+data to the calling process. If you have large infrequently changing data that needs to be accessed by thousands of processes there
 is a better way.
 
 Erlang has an optimization called constant pools for functions that return static data, you can also compile modules at runtime.
