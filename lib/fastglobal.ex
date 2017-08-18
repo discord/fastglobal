@@ -75,29 +75,20 @@ defmodule FastGlobal do
 
   @spec compile(atom, any) :: binary
   defp compile(module, value) do
-    {:ok, ^module, binary} = module
+    {:ok, ^module, binary} =
+      module
       |> value_to_abstract(value)
-      |> Enum.map(&:erl_syntax.revert/1)
       |> :compile.forms([:verbose, :report_errors])
+
     binary
   end
 
   @spec value_to_abstract(atom, any) :: [:erl_syntax.syntaxTree]
   defp value_to_abstract(module, value) do
-    import :erl_syntax
     [
-      # -module(module).
-      attribute(
-        atom(:module),
-        [atom(module)]),
-      # -export([value/0]).
-      attribute(
-        atom(:export),
-        [list([arity_qualifier(atom(:value), integer(0))])]),
-      # value() -> value.
-      function(
-        atom(:value),
-        [clause([], :none, [abstract(value)])]),
+      {:attribute, 0, :module, module},
+      {:attribute, 0, :export, [value: 0]},
+      {:function, 0, :value, 0, [{:clause, 0, [], [], [:erl_syntax.revert(:erl_syntax.abstract(value))]}]}
     ]
   end
 end
