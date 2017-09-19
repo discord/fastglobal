@@ -33,7 +33,7 @@ defmodule FastGlobal.Mixfile do
       licenses: ["MIT"],
       files: ["lib/*", "mix.exs", "README*", "LICENSE*"],
       links: %{
-        "GitHub" => "https://github.com/hammerandchisel/fastglobal",
+        "GitHub" => "https://github.com/discordapp/fastglobal",
       },
     ]
   end
