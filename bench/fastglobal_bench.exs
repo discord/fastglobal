@@ -31,7 +31,22 @@ defmodule FastGlobalBench do
     :ok
   end
 
+  bench "fastglobal purge perf (100)", [procs: gen_processes(100)] do
+    FastGlobal.put(__MODULE__, :hello)
+    :ok
+  end
+
   ## Private
+
+  defp gen_processes(n) do
+    for _ <- 0..n do
+      spawn_link(fn ->
+        receive do
+          _ -> :ok
+        end
+      end)
+    end
+  end
 
   defp gen_fastglobal() do
     FastGlobal.put(:data, gen_services(50))
