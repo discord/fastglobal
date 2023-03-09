@@ -1,6 +1,6 @@
 # FastGlobal
 
-[![Master](https://travis-ci.org/discordapp/fastglobal.svg?branch=master)](https://travis-ci.org/discordapp/fastglobal)
+[![Master](https://travis-ci.org/discordapp/fastglobal.svg?branch=main)](https://travis-ci.org/discordapp/fastglobal)
 [![Hex.pm Version](http://img.shields.io/hexpm/v/fastglobal.svg?style=flat)](https://hex.pm/packages/fastglobal)
 
 The Erlang VM is great at many things, but quick access to large shared data is not one of them. Storing data in a single process
